@@ -146,11 +146,8 @@ public abstract class GoogleDao<T extends IEntity<ID>, ID extends Serializable> 
 	@Override
 	public List<T> findAll(OrderBy... orderByList) {
 		PersistenceManager persistenceManager = applicationPersistenceManager.getPersistenceJDOManager();
-		String clause = QueryHelper.getOrderByAsString(orderByList);
 		Query query = persistenceManager.newQuery(persistentClass);
-		if (clause != null) {
-			query.setOrdering(clause.toString());
-		}
+		query.setOrdering(QueryHelper.getOrderByAsString(orderByList));
 		try {
 			return (List<T>) QueryHelper.getQueryResult(query);
 		} finally {
@@ -169,21 +166,9 @@ public abstract class GoogleDao<T extends IEntity<ID>, ID extends Serializable> 
 	public List<T> executeQuery(String jdoql, ParameterQuery... parameterQueryList) {
 		PersistenceManager persistenceManager = applicationPersistenceManager.getPersistenceJDOManager();
 		Query query = persistenceManager.newQuery(persistentClass, jdoql);
-		Object[] objects = null;
-		if (parameterQueryList != null && parameterQueryList.length > 0) {
-			objects = new Object[parameterQueryList.length];
-			StringBuilder parameters = new StringBuilder();
-			for (int i = 0; i < parameterQueryList.length; i++) {
-				parameters.append(parameterQueryList[i].getType().getName() + " " + parameterQueryList[i].getParameterName());
-				if (i != parameterQueryList.length - 1) {
-					parameters.append(", ");
-				}
-				objects[i] = parameterQueryList[i].getValue();
-			}
-			query.declareParameters(parameters.toString());
-		}
+		query.declareParameters(QueryHelper.getParametersAsString(parameterQueryList));
 		try {
-			return (List<T>) QueryHelper.getQueryResult(query, objects);
+			return (List<T>) QueryHelper.getQueryResult(query, QueryHelper.getParametersAsMap(parameterQueryList));
 		} finally {
 			query.closeAll();
 		}

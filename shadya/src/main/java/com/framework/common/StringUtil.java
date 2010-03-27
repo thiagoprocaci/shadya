@@ -6,6 +6,9 @@ package com.framework.common;
  * 
  */
 public final class StringUtil {
+	private StringUtil() {
+	}
+
 	/**
 	 * 
 	 * @param string

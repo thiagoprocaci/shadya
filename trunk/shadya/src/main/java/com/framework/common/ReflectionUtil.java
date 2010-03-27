@@ -11,6 +11,9 @@ public final class ReflectionUtil {
 	private static final String GET = "get";
 	private static final String SET = "set";
 
+	private ReflectionUtil() {
+	}
+
 	/**
 	 * 
 	 * @param field

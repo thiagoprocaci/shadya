@@ -19,6 +19,7 @@ public class ApplicationPersistenceManager implements IApplicationPersistenceMan
 	public void setPersistenceFactory(IPersistenceFactory persistenceFactory) {
 		this.persistenceFactory = persistenceFactory;
 	}
+	
 
 	/**
 	 * {@inheritDoc}

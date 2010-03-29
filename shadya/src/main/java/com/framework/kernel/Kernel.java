@@ -6,6 +6,7 @@ import org.springframework.context.ApplicationContextAware;
 
 import com.framework.kernel.module.IKernelModule;
 import com.framework.kernel.module.KernelModules;
+import com.framework.persistence.IPersistenceModule;
 import com.framework.web.IWebModule;
 
 /**
@@ -53,5 +54,13 @@ public class Kernel implements ApplicationContextAware {
 	 */
 	public static IWebModule getWebModule() {
 		return (IWebModule) Kernel.getModule(KernelModules.WEB_MODULE);
+	}
+
+	/**
+	 * 
+	 * @return Retorna modulo de persistencia do framework
+	 */
+	public static IPersistenceModule persistenceModule() {
+		return (IPersistenceModule) Kernel.getModule(KernelModules.PERSISTENCE_MODULE);
 	}
 }

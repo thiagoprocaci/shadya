@@ -13,18 +13,18 @@ import com.framework.persistence.jdo.manager.IJDOPersistenceManager;
  * 
  */
 public class JDOPersistenceManager implements IJDOPersistenceManager {
-	private IJDOPersistenceFactory persistenceFactory;
-
-	@Required
-	public void setPersistenceFactory(IJDOPersistenceFactory persistenceFactory) {
-		this.persistenceFactory = persistenceFactory;
-	}
+	private IJDOPersistenceFactory jdoPersistenceFactory;
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public PersistenceManager getPersistenceJDOManager() {
-		return persistenceFactory.getPersistenceJDOManagerFactory().getPersistenceManager();
+		return jdoPersistenceFactory.getPersistenceJDOManagerFactory().getPersistenceManager();
+	}
+
+	@Required
+	public void setJdoPersistenceFactory(IJDOPersistenceFactory jdoPersistenceFactory) {
+		this.jdoPersistenceFactory = jdoPersistenceFactory;
 	}
 }

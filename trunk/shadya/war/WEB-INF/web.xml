@@ -20,6 +20,15 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<servlet-class>com.application.ShadyaServlet</servlet-class>
 	</servlet>
 	
+	<filter>
+		<filter-name>applitcationFilter</filter-name>
+		<filter-class>com.framework.filter.FrameworkFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>applitcationFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
 	<servlet-mapping>
 		<servlet-name>Shadya</servlet-name>
 		<url-pattern>/shadya</url-pattern>

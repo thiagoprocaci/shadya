@@ -4,6 +4,10 @@ import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
+import com.framework.kernel.module.IKernelModule;
+import com.framework.kernel.module.KernelModules;
+import com.framework.web.IWebModule;
+
 /**
  * Classe utilitaria central que prove acesso as interfaces do framework que
  * contem os principais servicos oferecidos
@@ -20,6 +24,18 @@ public class Kernel implements ApplicationContextAware {
 	 * Metodo executado durante a inicializacao do Kernel
 	 */
 	public void initialize() {
+		System.out.println("inicializacao framework");
+	}
+
+	/**
+	 * Retorna um modulo existente em KernelModules (enum)
+	 * 
+	 * @param module
+	 *            modulo a ser retornado
+	 * @return modulo presente no contexto correspondente ao modulo informado
+	 */
+	public static IKernelModule getModule(KernelModules module) {
+		return (IKernelModule) Kernel.applicationContext.getBean(module.value());
 	}
 
 	/**
@@ -29,5 +45,13 @@ public class Kernel implements ApplicationContextAware {
 	 */
 	public static Object getBean(String beanId) {
 		return Kernel.applicationContext.getBean(beanId);
+	}
+
+	/**
+	 * 
+	 * @return Retorna modulo web do framework
+	 */
+	public static IWebModule getWebModule() {
+		return (IWebModule) Kernel.getModule(KernelModules.WEB_MODULE);
 	}
 }

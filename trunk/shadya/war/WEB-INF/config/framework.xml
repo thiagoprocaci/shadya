@@ -16,9 +16,9 @@
     </bean>
 
 	<!-- persistencia -->
-	<bean id="persistenceFactory" class="com.framework.persistence.factory.core.PersistenceFactory" />
+	<bean id="persistenceFactory" class="com.framework.persistence.jdo.factory.core.JDOPersistenceFactory" />
 
-	<bean id="applicationPersistenceManager" class="com.framework.persistence.manager.core.ApplicationPersistenceManager">
+	<bean id="applicationPersistenceManager" class="com.framework.persistence.jdo.manager.core.JDOPersistenceManager">
 		<property name="persistenceFactory" ref="persistenceFactory" />
 	</bean>
 

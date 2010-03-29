@@ -16,14 +16,18 @@
     </bean>
 
 	<!-- persistencia -->
-	<bean id="persistenceFactory" class="com.framework.persistence.jdo.factory.core.JDOPersistenceFactory" />
+	<bean id="jdoPersistenceFactory" class="com.framework.persistence.jdo.factory.core.JDOPersistenceFactory" />
 
-	<bean id="applicationPersistenceManager" class="com.framework.persistence.jdo.manager.core.JDOPersistenceManager">
-		<property name="persistenceFactory" ref="persistenceFactory" />
+	<bean id="jdoPersistenceManager" class="com.framework.persistence.jdo.manager.core.JDOPersistenceManager">
+		<property name="jdoPersistenceFactory" ref="jdoPersistenceFactory" />
+	</bean>
+	
+	<bean id="persistenceModule" class="com.framework.persistence.core.PersistenceModule">
+		<property name="jdoPersistenceManager" ref="jdoPersistenceManager" />
 	</bean>
 
 	<bean abstract="true" id="dao" class="com.framework.persistence.dao.core.GoogleDao">
-		<property name="applicationPersistenceManager" ref="applicationPersistenceManager" />
+		<property name="persistenceModule" ref="persistenceModule" />
 	</bean>
 	
 	<!-- web -->	

@@ -2,7 +2,7 @@ package com.framework.persistence.exception;
 
 /**
  * 
- * Excecao lancada pelo Dao generico
+ * Excecao lancada pelo Dao persistenceManager
  * 
  */
 public class PersistenceException extends RuntimeException {

@@ -19,7 +19,7 @@ import com.framework.persistence.dao.dql.OrderBy;
 import com.framework.persistence.dao.dql.support.ParameterQuery;
 import com.framework.persistence.dao.dql.support.QueryHelper;
 import com.framework.persistence.exception.PersistenceException;
-import com.framework.persistence.manager.IApplicationPersistenceManager;
+import com.framework.persistence.jdo.manager.IJDOPersistenceManager;
 
 /**
  * 
@@ -29,7 +29,7 @@ import com.framework.persistence.manager.IApplicationPersistenceManager;
  * @param <ID>
  */
 public abstract class GoogleDao<T extends IEntity<ID>, ID extends Serializable> implements IDao<T, ID> {
-	private IApplicationPersistenceManager applicationPersistenceManager;
+	private IJDOPersistenceManager applicationPersistenceManager;
 	private Class<T> persistentClass;
 
 	@SuppressWarnings("unchecked")
@@ -38,7 +38,7 @@ public abstract class GoogleDao<T extends IEntity<ID>, ID extends Serializable> 
 	}
 
 	@Required
-	public void setApplicationPersistenceManager(IApplicationPersistenceManager applicationPersistenceManager) {
+	public void setApplicationPersistenceManager(IJDOPersistenceManager applicationPersistenceManager) {
 		this.applicationPersistenceManager = applicationPersistenceManager;
 	}
 

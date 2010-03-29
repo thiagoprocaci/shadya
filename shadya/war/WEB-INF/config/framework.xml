@@ -15,6 +15,7 @@
         <property name="targetMethod" value="initialize" />
     </bean>
 
+	<!-- persistencia -->
 	<bean id="persistenceFactory" class="com.framework.persistence.factory.core.PersistenceFactory" />
 
 	<bean id="applicationPersistenceManager" class="com.framework.persistence.manager.core.ApplicationPersistenceManager">
@@ -23,6 +24,25 @@
 
 	<bean abstract="true" id="dao" class="com.framework.persistence.dao.core.GoogleDao">
 		<property name="applicationPersistenceManager" ref="applicationPersistenceManager" />
+	</bean>
+	
+	<!-- web -->	
+	<bean id="ticketGenerator" class="com.framework.web.error.core.TicketGenerator" />
+	
+	<bean id="exceptionBarrier" class="com.framework.web.barrier.core.ExceptionBarrier" >
+		<property name="ticketGenerator" ref="ticketGenerator" />
+		<property name="systemExceptionHandlers">
+			 <list>
+			 	<bean class="com.framework.web.handler.exception.core.EmailNotifierSystemExceptionHandler" />
+			 </list>
+		</property>
+	</bean>
+	
+	<bean id="flowManager" class="com.framework.web.flow.core.FlowManager" />
+	
+	<bean id="webModule" class="com.framework.web.core.WebModule" >
+		<property name="flowManager" ref="flowManager" />
+		<property name="exceptionBarrier" ref="exceptionBarrier" />
 	</bean>
 
 </beans>

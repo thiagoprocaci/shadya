@@ -25,7 +25,7 @@ public class Kernel implements ApplicationContextAware {
 	 * Metodo executado durante a inicializacao do Kernel
 	 */
 	public void initialize() {
-		System.out.println("inicializacao framework");
+		System.out.println(" --- inicializacao framework ---");
 	}
 
 	/**

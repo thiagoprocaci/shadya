@@ -176,6 +176,9 @@ public class PersistenceModule extends KernelModule implements IPersistenceModul
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void initialize() {
 		// do nothing

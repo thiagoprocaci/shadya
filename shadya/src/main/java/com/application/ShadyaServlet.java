@@ -21,7 +21,7 @@ public class ShadyaServlet extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		resp.setContentType("text/plain");
 		resp.getWriter().println("Hello, world");
-		List<Person> list = personDao.executeQuery("id == identificador && name == nome", new ParameterQuery(Long.class, "identificador", 12L), new ParameterQuery(String.class, "nome", "name"));
+		/*List<Person> list = personDao.executeQuery("id == identificador && name == nome", new ParameterQuery(Long.class, "identificador", 12L), new ParameterQuery(String.class, "nome", "name"));
 		System.out.println("Query 1: id == identificador && name == nome");
 		resp.getWriter().println("Query 1: id == identificador && name == nome");
 		for (Person person : list) {
@@ -48,6 +48,9 @@ public class ShadyaServlet extends HttpServlet {
 		for (Person person : list) {
 			System.out.println(person.getId() + " " + person.getName());
 			resp.getWriter().println(person.getId() + " " + person.getName());
-		}
+		}*/
+		String texto = null;
+		System.out.println(texto.isEmpty());
+		Kernel.getMailModule().sendMail("mensagem", "assunto", "thiagoprocaci@gmail.com" , "thiagoprocaci@gmail.com");
 	}
 }

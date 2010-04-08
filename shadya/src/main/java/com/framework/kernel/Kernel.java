@@ -28,7 +28,7 @@ public class Kernel implements ApplicationContextAware {
 	 * Metodo executado durante a inicializacao do Kernel
 	 */
 	public void initialize() {
-		System.out.println("--- inicializacao framework ---");
+		System.out.println("--- starting framework ---");
 	}
 
 	/**
@@ -80,7 +80,8 @@ public class Kernel implements ApplicationContextAware {
 	 * @return Retorna usuario corrente da aplicacao
 	 */
 	public static IUser getCurrentUser() {
-		return (IUser) Kernel.getBean(CURRENT_USER);
+		return null;
+		// return (IUser) Kernel.getBean(CURRENT_USER);
 	}
 
 	/**

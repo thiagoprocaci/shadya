@@ -22,6 +22,7 @@ public class ExceptionMailFactory implements IExceptionMailFactory {
 	private static final String NAME = "NAME";
 	private static final String URL = "URL";
 	private static final String TIME = "TIME";
+	private static final String TICKET = "TICKET";
 	private static final String POINTS = ": ";
 	private static final String DATE_FORMAT = "dd/MM/yyyy HH:mm:ss";
 	private String to;
@@ -49,14 +50,15 @@ public class ExceptionMailFactory implements IExceptionMailFactory {
 	 * @param {@inheritDoc}
 	 * @param {@inheritDoc}
 	 * @param {@inheritDoc}
+	 * @param {@inheritDoc}
 	 */
 	@Override
-	public MailMessage create(Throwable exception, String url, String ticketCode) {
+	public MailMessage create(Throwable exception, String url, String ticketCode, Long insertTime) {
 		MailMessage mailMessage = new MailMessage();
 		mailMessage.setFrom(from);
 		mailMessage.setTo(to);
 		mailMessage.setSubject(subject);
-		mailMessage.setText(getMessage(exception, url, System.currentTimeMillis()));
+		mailMessage.setText(getMessage(exception, url, insertTime, ticketCode));
 		return mailMessage;
 	}
 
@@ -65,14 +67,15 @@ public class ExceptionMailFactory implements IExceptionMailFactory {
 	 * 
 	 * @param e
 	 *            excecao a ser informada no email
-	 * @param resource
+	 * @param url
 	 *            recurso que causou a excecao
 	 * @param insertTime
 	 *            o momento em que a excecao ocorreu
+	 *          
 	 * @return a mensagem montada com as informacoes da excecao
 	 */
-	private String getMessage(Throwable e, String resource, Long insertTime) {
-		if (e == null || resource == null || insertTime == null) {
+	private String getMessage(Throwable e, String url, Long insertTime, String ticketCode) {
+		if (e == null || url == null || insertTime == null) {
 			return "";
 		}
 		StringBuilder text = new StringBuilder();
@@ -84,8 +87,10 @@ public class ExceptionMailFactory implements IExceptionMailFactory {
 		}
 		text.append(MAIL + POINTS + email + HTML_LINE_BREAK);
 		text.append(NAME + POINTS + name + HTML_LINE_BREAK);
-		text.append(URL + POINTS + resource + HTML_LINE_BREAK);
+		text.append(URL + POINTS + url + HTML_LINE_BREAK);
+		text.append(TICKET + POINTS + ticketCode + HTML_LINE_BREAK);
 		text.append(TIME + POINTS + new SimpleDateFormat(DATE_FORMAT).format(new Date(insertTime)) + HTML_LINE_BREAK + HTML_LINE_BREAK);
+		
 		while (e != null) {
 			if (e.getClass() != null) {
 				text.append(e.getClass() + HTML_LINE_BREAK);

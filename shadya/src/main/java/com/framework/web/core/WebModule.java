@@ -58,7 +58,7 @@ public class WebModule implements IWebModule {
 
 	@Override
 	public void processRequest(ServletRequest request, ServletResponse response, FilterChain chain) {
-		// Assuminos que o filtro web ira somente processar HttpRequests.
+		// Assumimos que o filtro web ira somente processar HttpRequests.
 		if (request instanceof HttpServletRequest) {
 			try {
 				// deixamos o flowManager saber o que esta acontecendo
@@ -74,7 +74,7 @@ public class WebModule implements IWebModule {
 				notifyAfterRequestHandlers();
 			}
 		} else {
-			System.out.println("This web Module implementation works only for http requests");
+			System.out.println("This web module implementation works only for http requests");
 		}
 	}
 
@@ -136,7 +136,7 @@ public class WebModule implements IWebModule {
 		if (!getFlowManager().isRequestCommitted()) {
 			chain.doFilter(request, response);
 		} else {
-			System.out.println("Response Already Commited before Application Invoke...!");
+			System.out.println("Response had been commited before application was invoked...!");
 		}
 	}
 }

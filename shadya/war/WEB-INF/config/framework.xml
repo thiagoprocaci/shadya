@@ -32,6 +32,13 @@
 	
 	<!-- mail -->	
 	<bean id="mailModule" class="com.framework.mail.core.MailModule" />
+	
+	<bean id="exceptionMailFactory" class="com.framework.mail.factory.core.ExceptionMailFactory">
+		<property name="from" value="thiagoprocaci@gmail.com" />
+		<property name="to" value="thiagoprocaci@gmail.com" />
+		<property name="subject" value="Error shadya" />
+	</bean>
+	
 		
 	<!-- web -->	
 	<bean id="ticketGenerator" class="com.framework.web.error.core.TicketGenerator" />
@@ -40,7 +47,9 @@
 		<property name="ticketGenerator" ref="ticketGenerator" />
 		<property name="systemExceptionHandlers">
 			 <list>
-			 	<bean class="com.framework.web.handler.exception.core.EmailNotifierSystemExceptionHandler" />
+			 	<bean class="com.framework.web.handler.exception.core.EmailNotifierSystemExceptionHandler" >
+			 		<property name="exceptionMailFactory" ref="exceptionMailFactory" />
+			 	</bean>
 			 </list>
 		</property>
 	</bean>

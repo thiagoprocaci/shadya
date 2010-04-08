@@ -39,7 +39,7 @@ public class ExceptionBarrier implements IExceptionBarrier {
 		System.out.println("Error ticket: " + errorTicket);
 		if (systemExceptionHandlers != null && !systemExceptionHandlers.isEmpty()) {
 			for (ISystemExceptionHandler handler : systemExceptionHandlers) {
-				// o exception handler tambem pode lancar exececoes
+				// o exception handler tambem pode lancar excecoes
 				try {
 					handler.handleException(flowManager, exception, errorTicket);
 				} catch (Throwable e) {

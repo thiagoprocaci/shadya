@@ -13,7 +13,8 @@ public interface IExceptionMailFactory {
 	 * @param exception
 	 * @param url
 	 * @param ticketCode
+	 * @param insertTime
 	 * @return Retorna mensagem de email de excecao
 	 */
-	public MailMessage create(Throwable exception, String url, String ticketCode);
+	public MailMessage create(Throwable exception, String url, String ticketCode, Long insertTime);
 }

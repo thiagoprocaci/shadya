@@ -30,6 +30,9 @@
 		<property name="persistenceModule" ref="persistenceModule" />
 	</bean>
 	
+	<!-- mail -->	
+	<bean id="mailModule" class="com.framework.mail.core.MailModule" />
+		
 	<!-- web -->	
 	<bean id="ticketGenerator" class="com.framework.web.error.core.TicketGenerator" />
 	
@@ -48,5 +51,7 @@
 		<property name="flowManager" ref="flowManager" />
 		<property name="exceptionBarrier" ref="exceptionBarrier" />
 	</bean>
+	
+	
 
 </beans>

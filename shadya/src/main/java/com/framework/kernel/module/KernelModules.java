@@ -7,6 +7,7 @@ package com.framework.kernel.module;
  */
 public enum KernelModules {
 	PERSISTENCE_MODULE("persistenceModule"),
+	MAIL_MODULE("mailModule"),
 	WEB_MODULE("webModule");
 	private String value;
 

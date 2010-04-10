@@ -6,6 +6,7 @@ package com.framework.kernel.module;
  * 
  */
 public enum KernelModules {
+	MESSENGER_MODULE("messengerModule"),
 	PERSISTENCE_MODULE("persistenceModule"),
 	MAIL_MODULE("mailModule"),
 	WEB_MODULE("webModule");

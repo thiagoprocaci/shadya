@@ -39,6 +39,14 @@
 		<property name="subject" value="Error shadya" />
 	</bean>
 	
+	<!-- mensageria -->
+	<bean id="messengerModule" class="com.framework.messenger.core.MessengerModule" >		
+		<property name="bundleList">
+			 <list>
+			 	<value>messages</value>
+			 </list>
+		</property>
+	</bean>
 		
 	<!-- web -->	
 	<bean id="ticketGenerator" class="com.framework.web.error.core.TicketGenerator" />

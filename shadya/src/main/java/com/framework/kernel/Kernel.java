@@ -7,6 +7,7 @@ import org.springframework.context.ApplicationContextAware;
 import com.framework.kernel.module.IKernelModule;
 import com.framework.kernel.module.KernelModules;
 import com.framework.mail.IMailModule;
+import com.framework.messenger.IMessengerModule;
 import com.framework.persistence.IPersistenceModule;
 import com.framework.security.IUser;
 import com.framework.web.IWebModule;
@@ -73,6 +74,14 @@ public class Kernel implements ApplicationContextAware {
 	 */
 	public static IMailModule getMailModule() {
 		return (IMailModule) Kernel.getModule(KernelModules.MAIL_MODULE);
+	}
+	
+	/**
+	 * 
+	 * @return Retorna modulo de mensageria do framework
+	 */
+	public static IMessengerModule getMessengerModule() {
+		return (IMessengerModule) Kernel.getModule(KernelModules.MESSENGER_MODULE);
 	}
 
 	/**

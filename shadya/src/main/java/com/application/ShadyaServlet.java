@@ -11,13 +11,15 @@ import com.framework.kernel.Kernel;
 
 @SuppressWarnings("serial")
 public class ShadyaServlet extends HttpServlet {
-	private IPersonDao personDao = (IPersonDao) Kernel.getBean("personDao");
+	private IPersonDao personDao ;
 
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		resp.setContentType("text/plain");
 		resp.getWriter().println("Hello, world");
-		Kernel.getMessengerModule().addSuccessMessage("mensagemTeste");
+		Kernel.getMessengerModule().addSuccessMessage("mensagemTeste",new Object[]{"ola","oi"});
 		resp.getWriter().println(Kernel.getMessengerModule().getSuccessMessages());
+		
+		personDao.findAll();
 		
 		/*List<Person> list = personDao.executeQuery("id == identificador && name == nome", new ParameterQuery(Long.class, "identificador", 12L), new ParameterQuery(String.class, "nome", "name"));
 		System.out.println("Query 1: id == identificador && name == nome");

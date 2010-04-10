@@ -259,4 +259,14 @@ public interface IFlowManager extends IKernelModule {
 	 * Reinicializa o gerenciador de navegacao
 	 */
 	void reset();
+
+	/**
+	 * Seta atributo no request
+	 * 
+	 * @param key
+	 *            chave do atributo
+	 * @param object
+	 *            valor
+	 */
+	void setAttribute(String key, Object object);
 }

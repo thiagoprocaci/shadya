@@ -364,4 +364,17 @@ public class FlowManager extends KernelModule implements IFlowManager {
 	public void reset() {
 		response.reset();
 	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @param key
+	 *            {@inheritDoc}
+	 * @param object
+	 *            {@inheritDoc}
+	 */
+	@Override
+	public void setAttribute(String key, Object object) {
+		request.setAttribute(key, object);
+	}
 }

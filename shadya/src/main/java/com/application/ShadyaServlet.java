@@ -49,8 +49,6 @@ public class ShadyaServlet extends HttpServlet {
 			System.out.println(person.getId() + " " + person.getName());
 			resp.getWriter().println(person.getId() + " " + person.getName());
 		}*/
-		String texto = null;
-		System.out.println(texto.isEmpty());
-		Kernel.getMailModule().sendMail("mensagem", "assunto", "thiagoprocaci@gmail.com" , "thiagoprocaci@gmail.com");
+	
 	}
 }

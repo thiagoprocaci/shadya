@@ -58,6 +58,8 @@
 			 	<bean class="com.framework.web.handler.exception.core.EmailNotifierSystemExceptionHandler" >
 			 		<property name="exceptionMailFactory" ref="exceptionMailFactory" />
 			 	</bean>
+			 	<bean class="com.framework.web.handler.exception.core.PageNotifierSystemExceptionHandler" />
+			 	<bean class="com.framework.web.handler.exception.core.StackTraceNotifierSystemExceptionHandler" />
 			 </list>
 		</property>
 	</bean>
@@ -67,8 +69,6 @@
 	<bean id="webModule" class="com.framework.web.core.WebModule" >
 		<property name="flowManager" ref="flowManager" />
 		<property name="exceptionBarrier" ref="exceptionBarrier" />
-	</bean>
-	
-	
+	</bean>	
 
 </beans>

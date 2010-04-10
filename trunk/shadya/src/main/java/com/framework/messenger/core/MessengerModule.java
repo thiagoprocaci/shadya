@@ -25,7 +25,7 @@ public class MessengerModule extends KernelModule implements IMessengerModule {
 	private String getDefaultBundle() {
 		// o bundle default eh o primeiro definido
 		if (bundleList != null && !bundleList.isEmpty()) {
-			bundleList.get(0);
+			return bundleList.get(0);
 		}
 		return null;
 	}

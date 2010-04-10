@@ -78,6 +78,6 @@ public class FrameworkFilter implements Filter {
 	 */
 	private final void logDebugLeaveMethod() {
 		// TODO colocar log aqui
-		System.out.println("Leaving filter " + filterConfig.getFilterName() + ". No exceptions caught.");
+		System.out.println("Leaving filter " + filterConfig.getFilterName());
 	}
 }

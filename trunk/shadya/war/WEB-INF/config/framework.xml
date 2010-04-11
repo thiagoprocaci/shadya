@@ -57,9 +57,9 @@
 			 <list>
 			 	<bean class="com.framework.web.handler.exception.core.EmailNotifierSystemExceptionHandler" >
 			 		<property name="exceptionMailFactory" ref="exceptionMailFactory" />
-			 	</bean>
-			 	<bean class="com.framework.web.handler.exception.core.PageNotifierSystemExceptionHandler" />
+			 	</bean>			 	
 			 	<bean class="com.framework.web.handler.exception.core.StackTraceNotifierSystemExceptionHandler" />
+			 	<bean class="com.framework.web.handler.exception.core.PageNotifierSystemExceptionHandler" />
 			 </list>
 		</property>
 	</bean>

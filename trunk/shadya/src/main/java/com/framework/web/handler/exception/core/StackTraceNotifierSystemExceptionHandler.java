@@ -19,8 +19,7 @@ public class StackTraceNotifierSystemExceptionHandler implements ISystemExceptio
 	 */
 	@Override
 	public void handleException(IFlowManager flowManager, Throwable exception, String ticketCode) {
-		System.out.println("Stack trace handler");
-		System.out.println("Ticket: " + ticketCode);
+		System.out.println("Exception handle " + this.getClass().getName());	
 		System.out.println("Requested URL: " + flowManager.getRequest().getRequestURL().toString());
 		exception.printStackTrace();
 	}

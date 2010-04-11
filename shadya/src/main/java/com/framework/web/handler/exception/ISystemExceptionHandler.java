@@ -1,12 +1,11 @@
 package com.framework.web.handler.exception;
 
-import com.framework.kernel.module.IKernelModule;
 import com.framework.web.flow.IFlowManager;
 
 /**
  * Tratador de excecoes
  */
-public interface ISystemExceptionHandler extends IKernelModule {
+public interface ISystemExceptionHandler  {
 	/**
 	 * Processa o tratamento de uma excecao
 	 * 

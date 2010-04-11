@@ -8,14 +8,12 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
-import com.framework.kernel.module.IKernelModule;
-
 /**
  * 
  * Interface do gerenciador de navegacao
  * 
  */
-public interface IFlowManager extends IKernelModule {
+public interface IFlowManager {
 	/**
 	 * Retorna o request uri
 	 * 

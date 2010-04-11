@@ -1,12 +1,11 @@
 package com.framework.web.barrier;
 
-import com.framework.kernel.module.IKernelModule;
 import com.framework.web.flow.IFlowManager;
 
 /**
  * Realiza a captura das excecoes e impedindo que a excecao chegue ao usuario
  */
-public interface IExceptionBarrier extends IKernelModule {
+public interface IExceptionBarrier {
 	/**
 	 * Realiza a notificacao de uma excecao de sistema
 	 * 

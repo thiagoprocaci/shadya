@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
@@ -27,6 +28,7 @@ import com.framework.persistence.jdo.manager.IJDOPersistenceManager;
  */
 public class PersistenceModule extends KernelModule implements IPersistenceModule {
 	private static final long serialVersionUID = -3266603364634330568L;
+	private static final Logger LOG = Logger.getLogger(PersistenceModule.class.getName());
 	private IJDOPersistenceManager jdoPersistenceManager;
 
 	/**
@@ -181,7 +183,7 @@ public class PersistenceModule extends KernelModule implements IPersistenceModul
 	 */
 	@Override
 	public void initialize() {
-		// do nothing
+		LOG.info("starting persistence module");
 	}
 
 	/**

@@ -2,6 +2,7 @@ package com.framework.messenger.core;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import com.framework.kernel.module.core.KernelModule;
 import com.framework.messenger.IMessengerModule;
@@ -14,6 +15,7 @@ import com.framework.messenger.support.MessageBundleUtils;
  */
 public class MessengerModule extends KernelModule implements IMessengerModule {
 	private static final long serialVersionUID = 5231933843984594668L;
+	private static final Logger LOG = Logger.getLogger(MessengerModule.class.getName());
 	private List<String> bundleList;
 	private List<String> errorMessages = new ArrayList<String>();
 	private List<String> successMessages = new ArrayList<String>();
@@ -36,6 +38,7 @@ public class MessengerModule extends KernelModule implements IMessengerModule {
 
 	@Override
 	public void initialize() {
+		LOG.info("Starting messenger module");
 	}
 
 	/**

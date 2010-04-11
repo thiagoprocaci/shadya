@@ -1,6 +1,5 @@
 package com.framework.web.handler.exception.core;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -22,8 +21,7 @@ import com.framework.web.handler.exception.holder.ExceptionHolder;
  * Notifica excecoes lancadas pela aplicacao por email
  * 
  */
-public class EmailNotifierSystemExceptionHandler implements ISystemExceptionHandler, Serializable {
-	private static final long serialVersionUID = -2264678952346094229L;
+public class EmailNotifierSystemExceptionHandler implements ISystemExceptionHandler {
 	private static final Logger LOG = Logger.getLogger(EmailNotifierSystemExceptionHandler.class.getName());
 	private static final double EXPIRACY = 180;
 	private Map<String, ExceptionHolder> exceptions = new HashMap<String, ExceptionHolder>();

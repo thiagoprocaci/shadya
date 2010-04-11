@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Required;
 
+import com.framework.kernel.module.core.KernelModule;
 import com.framework.web.IWebModule;
 import com.framework.web.barrier.IExceptionBarrier;
 import com.framework.web.flow.IFlowManager;
@@ -23,7 +24,8 @@ import com.framework.web.handler.IBeforeRequestHandler;
  * Implementacao do modulo web do Framework
  * 
  */
-public class WebModule implements IWebModule {
+public class WebModule extends KernelModule implements IWebModule {
+	private static final long serialVersionUID = -7562706900081888527L;
 	private static final Logger LOG = Logger.getLogger(WebModule.class.getName());
 	private List<IBeforeRequestHandler> beforeRequestHandlers;
 	private List<IAfterRequestHandler> afterRequestHandlers;
@@ -82,7 +84,7 @@ public class WebModule implements IWebModule {
 
 	@Override
 	public void initialize() {
-		// do nothing
+		LOG.info("starting web module");
 	}
 
 	/**

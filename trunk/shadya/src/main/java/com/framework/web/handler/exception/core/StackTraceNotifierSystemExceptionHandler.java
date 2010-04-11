@@ -27,9 +27,4 @@ public class StackTraceNotifierSystemExceptionHandler implements ISystemExceptio
 		LOG.info("Requested URL: " + flowManager.getRequest().getRequestURL().toString());
 		exception.printStackTrace();
 	}
-
-	@Override
-	public void initialize() {
-		// do nothing
-	}
 }

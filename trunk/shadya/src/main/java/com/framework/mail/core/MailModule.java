@@ -1,6 +1,7 @@
 package com.framework.mail.core;
 
 import java.util.Properties;
+import java.util.logging.Logger;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -22,6 +23,7 @@ import com.framework.mail.message.MailMessage;
  */
 public class MailModule extends KernelModule implements IMailModule {
 	private static final long serialVersionUID = -8630649505962234930L;
+	private static final Logger LOG = Logger.getLogger(MailModule.class.getName());
 	private static final String MESSAGE = "To and from parameters must be specified";
 	private Session session;
 
@@ -85,6 +87,7 @@ public class MailModule extends KernelModule implements IMailModule {
 	 */
 	@Override
 	public void initialize() {
+		LOG.info("starting mail module");
 		Properties props = new Properties();
 		session = Session.getDefaultInstance(props, null);
 	}

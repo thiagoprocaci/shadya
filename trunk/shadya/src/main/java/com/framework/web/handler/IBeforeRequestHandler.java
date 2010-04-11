@@ -1,6 +1,5 @@
 package com.framework.web.handler;
 
-import com.framework.kernel.module.IKernelModule;
 import com.framework.web.flow.IFlowManager;
 
 /**
@@ -8,7 +7,7 @@ import com.framework.web.flow.IFlowManager;
  * Handler chamado antes do request
  * 
  */
-public interface IBeforeRequestHandler extends IKernelModule {
+public interface IBeforeRequestHandler {
 	/**
 	 * Execucao do handler
 	 * 

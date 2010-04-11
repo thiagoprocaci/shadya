@@ -65,14 +65,6 @@ public class EmailNotifierSystemExceptionHandler implements ISystemExceptionHand
 	}
 
 	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void initialize() {
-		// do nothing
-	}
-
-	/**
 	 * Remove excecoes que ja foram lancadas a mais de um minuto
 	 */
 	private void removeExpiredExceptions() {

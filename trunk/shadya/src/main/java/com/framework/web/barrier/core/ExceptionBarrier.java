@@ -50,12 +50,4 @@ public class ExceptionBarrier implements IExceptionBarrier {
 			}
 		}
 	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void initialize() {
-		// do nothing
-	}
 }

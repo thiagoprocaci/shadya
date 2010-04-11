@@ -40,9 +40,4 @@ public class PageNotifierSystemExceptionHandler implements ISystemExceptionHandl
 			}
 		}
 	}
-
-	@Override
-	public void initialize() {
-		// do nothing
-	}
 }

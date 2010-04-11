@@ -1,6 +1,7 @@
 package com.framework.web.barrier.core;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Required;
 
@@ -14,6 +15,7 @@ import com.framework.web.handler.exception.ISystemExceptionHandler;
  */
 public class ExceptionBarrier implements IExceptionBarrier {
 	private static final long serialVersionUID = 7294175674809258L;
+	private static final Logger LOG = Logger.getLogger(ExceptionBarrier.class.getName());
 	private static final String LINEBREAK = "\n";
 	private IErrorTicketGenerator ticketGenerator;
 	private List<ISystemExceptionHandler> systemExceptionHandlers;
@@ -34,16 +36,16 @@ public class ExceptionBarrier implements IExceptionBarrier {
 	 */
 	@Override
 	public void notifySystemException(IFlowManager flowManager, Throwable exception) {
-		// TODO colocar log no sysout
+		LOG.info("Exception caught: " + exception.getMessage());
 		String errorTicket = ticketGenerator.generateUID();
-		System.out.println("Error ticket: " + errorTicket);
+		LOG.info("Error ticket: " + errorTicket);
 		if (systemExceptionHandlers != null && !systemExceptionHandlers.isEmpty()) {
 			for (ISystemExceptionHandler handler : systemExceptionHandlers) {
 				// o exception handler tambem pode lancar excecoes
 				try {
 					handler.handleException(flowManager, exception, errorTicket);
 				} catch (Throwable e) {
-					System.out.println("Error on notify exception " + ticketGenerator.generateUID() + LINEBREAK + e.getMessage());
+					LOG.severe("Error on notify exception " + ticketGenerator.generateUID() + LINEBREAK + e.getMessage());
 				}
 			}
 		}

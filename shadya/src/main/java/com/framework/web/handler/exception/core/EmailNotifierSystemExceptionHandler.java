@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Required;
 
@@ -23,6 +24,7 @@ import com.framework.web.handler.exception.holder.ExceptionHolder;
  */
 public class EmailNotifierSystemExceptionHandler implements ISystemExceptionHandler, Serializable {
 	private static final long serialVersionUID = -2264678952346094229L;
+	private static final Logger LOG = Logger.getLogger(EmailNotifierSystemExceptionHandler.class.getName());
 	private static final double EXPIRACY = 180;
 	private Map<String, ExceptionHolder> exceptions = new HashMap<String, ExceptionHolder>();
 	private IExceptionMailFactory exceptionMailFactory;
@@ -41,9 +43,8 @@ public class EmailNotifierSystemExceptionHandler implements ISystemExceptionHand
 	 */
 	@Override
 	public synchronized void handleException(IFlowManager flowManager, Throwable exception, String ticketCode) {
-		// TODO colocar log
-		System.out.println("Exception handle " + this.getClass().getName());
-		System.out.println("Sending exception mail: " + exception.getMessage());
+		LOG.info("Exception handle ");
+		LOG.info("Sending exception mail: " + exception.getMessage());
 		try {
 			ExceptionHolder exceptionHolder = null;
 			if (!exceptions.containsKey(ExceptionHolder.generateId(exception, flowManager.getRequest().getRequestURL().toString()))) {
@@ -57,7 +58,8 @@ public class EmailNotifierSystemExceptionHandler implements ISystemExceptionHand
 				Kernel.getMailModule().sendMail(mail);
 			}
 		} catch (MailException e) {
-			System.out.println("Error on send exception mail");
+			LOG.severe("Error on send exception mail");
+			System.out.println();
 		}
 		removeExpiredExceptions();
 	}

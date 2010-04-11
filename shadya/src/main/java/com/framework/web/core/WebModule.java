@@ -2,6 +2,7 @@ package com.framework.web.core;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -23,6 +24,7 @@ import com.framework.web.handler.IBeforeRequestHandler;
  * 
  */
 public class WebModule implements IWebModule {
+	private static final Logger LOG = Logger.getLogger(WebModule.class.getName());
 	private List<IBeforeRequestHandler> beforeRequestHandlers;
 	private List<IAfterRequestHandler> afterRequestHandlers;
 	private IExceptionBarrier exceptionBarrier;
@@ -74,7 +76,7 @@ public class WebModule implements IWebModule {
 				notifyAfterRequestHandlers();
 			}
 		} else {
-			System.out.println("This web module implementation works only for http requests");
+			LOG.warning("This web module implementation works only for http requests");
 		}
 	}
 
@@ -111,7 +113,7 @@ public class WebModule implements IWebModule {
 				} catch (Throwable exception) {
 					// programador bacalhau... Bem, neste caso tudo que pode-se
 					// fazer eh logar o erro
-					System.out.println("Error after the exception barrier " + exception.getMessage());
+					LOG.severe("Error after the exception barrier " + exception.getMessage());
 				}
 			}
 		}
@@ -136,7 +138,7 @@ public class WebModule implements IWebModule {
 		if (!getFlowManager().isRequestCommitted()) {
 			chain.doFilter(request, response);
 		} else {
-			System.out.println("Response had been commited before application was invoked...!");
+			LOG.warning("Response had been commited before application was invoked...!");
 		}
 	}
 }

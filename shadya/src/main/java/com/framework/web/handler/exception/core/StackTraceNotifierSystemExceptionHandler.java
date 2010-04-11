@@ -1,5 +1,7 @@
 package com.framework.web.handler.exception.core;
 
+import java.util.logging.Logger;
+
 import com.framework.web.flow.IFlowManager;
 import com.framework.web.handler.exception.ISystemExceptionHandler;
 
@@ -10,6 +12,8 @@ import com.framework.web.handler.exception.ISystemExceptionHandler;
  * 
  */
 public class StackTraceNotifierSystemExceptionHandler implements ISystemExceptionHandler {
+	private static final Logger LOG = Logger.getLogger(StackTraceNotifierSystemExceptionHandler.class.getName());
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -19,8 +23,8 @@ public class StackTraceNotifierSystemExceptionHandler implements ISystemExceptio
 	 */
 	@Override
 	public void handleException(IFlowManager flowManager, Throwable exception, String ticketCode) {
-		System.out.println("Exception handle " + this.getClass().getName());	
-		System.out.println("Requested URL: " + flowManager.getRequest().getRequestURL().toString());
+		LOG.info("Exception handle ");
+		LOG.info("Requested URL: " + flowManager.getRequest().getRequestURL().toString());
 		exception.printStackTrace();
 	}
 

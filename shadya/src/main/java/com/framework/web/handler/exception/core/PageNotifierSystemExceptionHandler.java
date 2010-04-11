@@ -27,6 +27,7 @@ public class PageNotifierSystemExceptionHandler implements ISystemExceptionHandl
 	 */
 	@Override
 	public void handleException(IFlowManager flowManager, Throwable exception, String ticketCode) {
+		System.out.println("Exception handle " + this.getClass().getName());
 		if (!flowManager.isRequestCommitted()) {
 			flowManager.setAttribute(EXCEPTION, exception);
 			flowManager.setAttribute(TICKET, ticketCode);

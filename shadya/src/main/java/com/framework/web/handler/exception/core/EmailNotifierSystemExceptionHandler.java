@@ -42,6 +42,7 @@ public class EmailNotifierSystemExceptionHandler implements ISystemExceptionHand
 	@Override
 	public synchronized void handleException(IFlowManager flowManager, Throwable exception, String ticketCode) {
 		// TODO colocar log
+		System.out.println("Exception handle " + this.getClass().getName());
 		System.out.println("Sending exception mail: " + exception.getMessage());
 		try {
 			ExceptionHolder exceptionHolder = null;

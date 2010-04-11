@@ -1,5 +1,7 @@
 package com.framework.kernel;
 
+import java.util.logging.Logger;
+
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -17,6 +19,7 @@ import com.framework.web.IWebModule;
  * contem os principais servicos oferecidos
  */
 public class Kernel implements ApplicationContextAware {
+	private static final Logger LOG = Logger.getLogger(Kernel.class.getName());
 	private static ApplicationContext applicationContext;
 	private static String CURRENT_USER = "currentUser";
 
@@ -29,7 +32,7 @@ public class Kernel implements ApplicationContextAware {
 	 * Metodo executado durante a inicializacao do Kernel
 	 */
 	public void initialize() {
-		System.out.println("--- starting framework ---");
+		LOG.info("--- starting framework ---");
 	}
 
 	/**
@@ -75,7 +78,7 @@ public class Kernel implements ApplicationContextAware {
 	public static IMailModule getMailModule() {
 		return (IMailModule) Kernel.getModule(KernelModules.MAIL_MODULE);
 	}
-	
+
 	/**
 	 * 
 	 * @return Retorna modulo de mensageria do framework
@@ -95,6 +98,7 @@ public class Kernel implements ApplicationContextAware {
 
 	/**
 	 * Seta usuario corrente da aplicacao
+	 * 
 	 * @param user
 	 */
 	public static void setCurrentUser(IUser user) {

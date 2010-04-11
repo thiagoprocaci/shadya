@@ -1,6 +1,7 @@
 package com.framework.filter;
 
 import java.io.IOException;
+import java.util.logging.Logger;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -18,6 +19,7 @@ import com.framework.kernel.Kernel;
  */
 public class FrameworkFilter implements Filter {
 	private static final String MSG_FRAMEWORK_INITILIZATION = "FrameworkInitializationException please see framework documentation";
+	private static final Logger LOG = Logger.getLogger(FrameworkFilter.class.getName());
 	private FilterConfig filterConfig;
 
 	/**
@@ -51,33 +53,30 @@ public class FrameworkFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		try {
-			logDebugEnterMethod();
+			logEnterMethod();
 			// lugar onde tudo comeca e termina
 			Kernel.getWebModule().processRequest(request, response, chain);
 		} catch (Throwable exception) {
 			// Nao confundir isto com barreira de excecao.
 			// A Barreira ja existiu.
 			// Isto eh literalmente um FrameworkInitializationException.
-			// TODO colocar log aqui
-			System.out.println(MSG_FRAMEWORK_INITILIZATION + " " + exception);
+			LOG.severe(MSG_FRAMEWORK_INITILIZATION + " " + exception);
 		} finally {
-			logDebugLeaveMethod();
+			logLeaveMethod();
 		}
 	}
 
 	/**
 	 * Log da entrada no metodo
 	 */
-	private final void logDebugEnterMethod() {
-		// TODO colocar log aqui
-		System.out.println("Entering filter " + filterConfig.getFilterName() + ".");
+	private final void logEnterMethod() {
+		LOG.info("Entering filter " + filterConfig.getFilterName());
 	}
 
 	/**
 	 * Log da saida no metodo
 	 */
-	private final void logDebugLeaveMethod() {
-		// TODO colocar log aqui
-		System.out.println("Leaving filter " + filterConfig.getFilterName());
+	private final void logLeaveMethod() {
+		LOG.info("Leaving filter " + filterConfig.getFilterName());
 	}
 }

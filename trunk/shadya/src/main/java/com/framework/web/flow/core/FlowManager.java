@@ -2,6 +2,7 @@ package com.framework.web.flow.core;
 
 import java.io.IOException;
 import java.util.Locale;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -20,6 +21,7 @@ import com.framework.web.flow.IFlowManager;
  */
 public class FlowManager extends KernelModule implements IFlowManager {
 	private static final long serialVersionUID = -258367970729106908L;
+	private static final Logger LOG = Logger.getLogger(FlowManager.class.getName());
 	private boolean redirectRequested = false;
 	private HttpServletRequest request;
 	private HttpServletResponse response;
@@ -40,8 +42,7 @@ public class FlowManager extends KernelModule implements IFlowManager {
 	 */
 	@Override
 	public void sendRedirect(String url) throws IOException {
-		// TODO colocar log no lugar do sysout
-		System.out.println("Redirect requested");
+		LOG.info("Redirect requested");
 		redirectRequested = true;
 		response.sendRedirect(url);
 	}
@@ -54,8 +55,7 @@ public class FlowManager extends KernelModule implements IFlowManager {
 	 */
 	@Override
 	public void sendError(int arg) throws IOException {
-		// TODO colocar log no lugar do sysout
-		System.out.println("Send Error Requested");
+		LOG.info("Send Error Requested");
 		redirectRequested = true;
 		response.sendError(arg);
 	}

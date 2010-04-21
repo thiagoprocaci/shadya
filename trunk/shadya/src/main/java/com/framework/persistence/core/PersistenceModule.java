@@ -44,7 +44,7 @@ public class PersistenceModule extends KernelModule implements IPersistenceModul
 		try {
 			persistenceManager.deletePersistent(o);
 		} finally {
-			persistenceManager.close();
+			persistenceManager.close();			
 		}
 	}
 
@@ -79,7 +79,7 @@ public class PersistenceModule extends KernelModule implements IPersistenceModul
 	public List<Object> findAll(Class clazz) {
 		PersistenceManager persistenceManager = jdoPersistenceManager.getPersistenceJDOManager();
 		Query query = persistenceManager.newQuery(clazz);
-		try {
+		try {			
 			return (List<Object>) QueryHelper.getQueryResult(query);
 		} finally {
 			query.closeAll();

@@ -64,11 +64,17 @@
 		</property>
 	</bean>
 	
+	<!-- nao confundir o flowManager com o flowController do spring web flow.. -->
 	<bean id="flowManager" class="com.framework.web.flow.core.FlowManager" />
 	
 	<bean id="webModule" class="com.framework.web.core.WebModule" >
 		<property name="flowManager" ref="flowManager" />
 		<property name="exceptionBarrier" ref="exceptionBarrier" />
+		<property name="beforeRequestHandlers">
+			<list>
+				<bean class="com.framework.web.handler.core.NoCacheBeforeRequestHandler" />
+			</list>
+		</property>
 	</bean>	
 
 </beans>

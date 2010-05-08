@@ -25,6 +25,7 @@ import com.framework.web.handler.IBeforeRequestHandler;
  * 
  */
 public class WebModule extends KernelModule implements IWebModule {
+	// TODO esse modulo deve ser escopo request
 	private static final long serialVersionUID = -7562706900081888527L;
 	private static final Logger LOG = Logger.getLogger(WebModule.class.getName());
 	private List<IBeforeRequestHandler> beforeRequestHandlers;

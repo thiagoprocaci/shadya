@@ -19,6 +19,7 @@ import com.framework.web.flow.IFlowManager;
  * 
  */
 public class FlowManager implements IFlowManager {
+	// TODO essa classe deve ter escopo de request
 	private static final long serialVersionUID = -258367970729106908L;
 	private static final Logger LOG = Logger.getLogger(FlowManager.class.getName());
 	private boolean redirectRequested = false;

@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <flow xmlns="http://www.springframework.org/schema/webflow"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.springframework.org/schema/webflow
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow
                           http://www.springframework.org/schema/webflow/spring-webflow-1.0.xsd">
-	
 
-	<start-state idref="person"/>
+	<var name="person" class="com.application.model.Person" scope="flow" />
 
-	<view-state id="person" view="/person/person">
-		<transition on="search" to="search"/>
+	<start-state idref="savePerson" />
+
+	<view-state id="savePerson" view="/person/person">		
+		<transition on="searchPerson" to="searchPerson" />
 	</view-state>
-	
-	<view-state id="search" view="person/search">
-		<transition on="person" to="person"/>
+
+	<view-state id="searchPerson" view="person/search">
+		<transition on="savePerson" to="savePerson" />
 	</view-state>
-	
+
 </flow>

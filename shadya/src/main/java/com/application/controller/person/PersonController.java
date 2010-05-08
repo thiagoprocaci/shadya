@@ -1,17 +1,20 @@
 package com.application.controller.person;
 
 import org.springframework.beans.factory.annotation.Required;
+import org.springframework.webflow.action.FormAction;
+import org.springframework.webflow.execution.ScopeType;
 
 import com.application.business.service.IPersonService;
-import com.framework.presentation.support.InitializingController;
+import com.application.model.Person;
 
 /**
  * 
  * Controller de pessoa
  * 
  */
-public class PersonController extends InitializingController {
+public class PersonController extends FormAction {
 	private static final long serialVersionUID = 5408771229655841584L;
+	@SuppressWarnings("unused")
 	private IPersonService personService;
 	private String name = "teste";
 
@@ -25,7 +28,10 @@ public class PersonController extends InitializingController {
 	}
 
 	@Override
-	public void onCreate() {
-		System.out.println("onCreate");
+	public void afterPropertiesSet() throws Exception {
+		super.afterPropertiesSet();
+		setFormObjectClass(Person.class);
+		setFormObjectName("person");
+		setFormObjectScope(ScopeType.FLOW);
 	}
 }

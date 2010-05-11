@@ -12,17 +12,15 @@
 <title>Person</title>
 </head>
 <body>
+
 <form:form commandName="person" method="post">
 	<div>
-	    <input type="hidden" name="execution" value="${flowExecutionKey}"/>
+	    <input type="hidden" name="_flowExecutionKey" value="${flowExecutionKey}"/>
 	    <input type="hidden" name="_eventId" value="searchPerson"/>
 		<br />
 		Name:  <form:input path="name" />		
 		<br/>
-		
-		<input type="submit" value="BUSCA"/>	
-		
-		  	 
+		<input type="submit" value="BUSCA"/> 
 	</div>	
 </form:form>
 

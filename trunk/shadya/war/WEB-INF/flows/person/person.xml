@@ -9,11 +9,15 @@
 	<start-state idref="savePerson" />
 
 	<view-state id="savePerson" view="/person/person">		
-		<transition on="searchPerson" to="searchPerson" />
+		<transition on="searchPerson" to="searchPerson">
+			<evaluate-action expression="personController.setPerson(requestScope.person)" />
+		</transition>
 	</view-state>
 
 	<view-state id="searchPerson" view="person/search">
 		<transition on="savePerson" to="savePerson" />
 	</view-state>
+
+	<end-state id="finish" view="flowRedirect:person" />
 
 </flow>

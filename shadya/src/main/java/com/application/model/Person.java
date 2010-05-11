@@ -20,6 +20,14 @@ public class Person extends CoreEntity {
 	private String name;
 	@Persistent
 	private Date birthday;
+	static int i = 1;
+
+	public Person() {
+		System.out.println("nova pessoa");
+		name = "teste " + i;
+		i = i + 1;
+		System.out.println(name);
+	}
 
 	public Long getId() {
 		return id;

@@ -11,10 +11,9 @@
 <title>Search</title>
 </head>
 <body>
-	${person.name}
-	<br />
-	
-	<a href="<%= request.getAttribute("flowExecutionUrl") %>&_eventId=savePerson">Submit</a>
+	${flowScope.person.name}
+	<br />	
+	<a href="<%= request.getAttribute("flowExecutionUrl") %>&_eventId=savePerson">Voltar</a>
 	
 </body>
 </html>

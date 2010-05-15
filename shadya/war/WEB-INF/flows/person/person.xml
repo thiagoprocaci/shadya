@@ -8,7 +8,7 @@
 
 	<start-state idref="savePerson" />
 
-	<view-state id="savePerson" view="/person/person">		
+	<view-state id="savePerson" view="person">		
 		<transition on="searchPerson" to="searchPerson">
 			<evaluate-action expression="personController.setPerson(requestScope.person)" />
 		</transition>

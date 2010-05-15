@@ -14,6 +14,5 @@
     <import resource="framework.xml" />
     <import resource="persistence.xml" />
     <import resource="business.xml" />
-    <import resource="controller.xml" />
-    <import resource="action.xml" />    
+    <import resource="controller.xml" />    
 </beans>

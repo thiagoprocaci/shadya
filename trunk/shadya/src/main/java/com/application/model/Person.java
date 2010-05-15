@@ -23,10 +23,7 @@ public class Person extends CoreEntity {
 	static int i = 1;
 
 	public Person() {
-		System.out.println("nova pessoa");
-		name = "teste " + i;
-		i = i + 1;
-		System.out.println(name);
+
 	}
 
 	public Long getId() {

@@ -18,7 +18,7 @@ import com.framework.kernel.Kernel;
  * 
  */
 public class FrameworkFilter implements Filter {
-	private static final String MSG_FRAMEWORK_INITILIZATION = "FrameworkInitializationException please see framework documentation";
+	private static final String MSG_FRAMEWORK_INITILIZATION = "FrameworkInitializationException. Please see the framework documentation.";
 	private static final Logger LOG = Logger.getLogger(FrameworkFilter.class.getName());
 	private FilterConfig filterConfig;
 

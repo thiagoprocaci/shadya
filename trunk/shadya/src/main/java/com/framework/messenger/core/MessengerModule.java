@@ -38,7 +38,7 @@ public class MessengerModule extends KernelModule implements IMessengerModule {
 
 	@Override
 	public void initialize() {
-		LOG.info("Starting messenger module");
+		LOG.info("starting messenger module");
 	}
 
 	/**

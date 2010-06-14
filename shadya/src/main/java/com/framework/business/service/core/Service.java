@@ -18,6 +18,10 @@ public class Service<T extends IEntity<ID>, ID extends Serializable> implements 
 		this.dao = dao;
 	}
 
+	protected IDao<T, ID> getDao() {
+		return dao;
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -72,7 +76,7 @@ public class Service<T extends IEntity<ID>, ID extends Serializable> implements 
 	 * @param {@inheritDoc}
 	 */
 	@Override
-	public List<T> findAll(OrderBy... orderBy) {		
+	public List<T> findAll(OrderBy... orderBy) {
 		return dao.findAll(orderBy);
 	}
 }

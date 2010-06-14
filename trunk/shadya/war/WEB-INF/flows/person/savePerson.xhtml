@@ -12,6 +12,21 @@
         <title></title>
     </head>
     <body>
-        Ola
+	    <f:view>
+	        <h:form>
+		    	<div>
+		    		<h1><h:outputText value="Salva Pessoa" /></h1>
+		    	</div>    	
+				<div>
+					<h:outputText value="Nome:" /> 
+					<h:inputText value="#{personController.person.name}" />
+				</div> 
+				<br />
+				<div>				
+					<h:commandButton value="Salvar" action="savePerson" />
+					<h:commandButton value="Buscar" action="searchPerson" />
+				</div>  
+			</h:form>
+		</f:view>
     </body>
 </html>

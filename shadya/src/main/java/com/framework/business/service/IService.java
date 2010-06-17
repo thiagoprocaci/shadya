@@ -3,6 +3,7 @@ package com.framework.business.service;
 import java.io.Serializable;
 import java.util.List;
 
+import com.framework.business.exception.BusinessException;
 import com.framework.entity.IEntity;
 import com.framework.persistence.dao.dql.OrderBy;
 
@@ -47,4 +48,11 @@ public interface IService<T extends IEntity<ID>, ID extends Serializable> {
 	 * @param o
 	 */
 	public void delete(T o);
+	
+	/**
+	 * Persiste ou atualiza o objeto
+	 * @param o
+	 * @throws BusinessException if the object is null
+	 */
+	public void merge(T o) throws BusinessException;
 }

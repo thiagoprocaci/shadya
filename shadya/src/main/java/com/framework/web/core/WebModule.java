@@ -67,6 +67,8 @@ public class WebModule extends KernelModule implements IWebModule {
 			try {
 				// deixamos o flowManager saber o que esta acontecendo
 				flowManager.processRequest(request, response);
+				// log do recurso acessado
+				LOG.info("Reaching resource : " + flowManager.getRequest().getRequestURI());				
 				// Chama todos os BeforeRequestHandlers registrados
 				notifyBeforeRequestHandlers();
 				// invoca aplicacao

@@ -13,9 +13,9 @@
 	
 	<view-state id="savePerson" view="savePerson">		
 		<transition on="savePerson" to="savePerson">			
+			<evaluate expression="personController.save()" />
 		</transition>		
-		<transition on="searchPerson" to="searchPerson">			
-		</transition>
+		<transition on="searchPerson" to="searchPerson" />		
 	</view-state>	
 
 	<end-state id="finish" view="flowRedirect:person" />

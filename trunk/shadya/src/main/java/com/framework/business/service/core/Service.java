@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Required;
 
+import com.framework.business.exception.BusinessException;
 import com.framework.business.service.IService;
 import com.framework.entity.IEntity;
 import com.framework.persistence.dao.IDao;
@@ -78,5 +79,24 @@ public class Service<T extends IEntity<ID>, ID extends Serializable> implements 
 	@Override
 	public List<T> findAll(OrderBy... orderBy) {
 		return dao.findAll(orderBy);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @param {@inheritDoc}
+	 * @throws {@inheritDoc}
+	 * */
+	@Override
+	public void merge(T o) throws BusinessException {
+		if (o != null) {
+			if (o.isNew()) {
+				dao.persist(o);
+			} else {
+				dao.update(o);
+			}
+		} else {
+			throw new BusinessException("The object can not be null on merge.");
+		}
 	}
 }

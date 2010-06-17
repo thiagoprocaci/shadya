@@ -36,7 +36,7 @@ public class PersonController extends InitializingController {
 		this.person = person;
 	}
 
-	public List<Person> getPersonList() {		
+	public List<Person> getPersonList() {
 		return personList;
 	}
 
@@ -50,13 +50,8 @@ public class PersonController extends InitializingController {
 	}
 
 	public void save() {
-		if (person != null) {
-			if (person.isNew()) {
-				personService.persist(person);
-			} else {
-				personService.update(person);
-			}
-		}
+		person.setName(name);
+		personService.merge(person);
 	}
 
 	@Override

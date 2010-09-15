@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich" xml:lang="pt-BR" lang="pt-BR">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title><ui:insert name="title">Arquivo de Biblioteca Facelets</ui:insert>
+</title>
+</head>
+<body>
+<ui:composition name="help">
+	<!--  The label is optional. Generate it if it is missing. -->
+	<c:if test="${empty label}">
+		<c:set var="label" value="#{chave}" />
+	</c:if>
+	<h:outputLabel value="#{label}" />
+	<h:outputLabel value="#{chave}" />
+	<f:facet name="help">
+		<h:outputLabel value="#{chave}" />
+	</f:facet>
+</ui:composition>
+</body>
+
+</html>

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	id="WebApp_ID" version="2.5">
+	<description>kameshi</description>
+	<display-name>kameshi_project</display-name>
+	<distributable />
+	<listener>
+		<listener-class>com.kameshi.framework.log.LogbackConfigListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>com.sun.faces.config.ConfigureListener</listener-class>
+	</listener>
+	<context-param>
+		<param-name>logbackConfigLocation</param-name>
+		<param-value>classpath:kameshi/logback.xml</param-value>
+	</context-param>
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/config/application.xml</param-value>
+	</context-param>
+	<context-param>
+		<param-name>facelets.DEVELOPMENT</param-name>
+		<param-value>false</param-value>
+	</context-param>
+	<context-param>
+		<param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+		<param-value>client</param-value>
+	</context-param>
+	<context-param>
+		<param-name>com.sun.faces.compressViewState</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	<context-param>
+		<param-name>org.apache.myfaces.CHECK_EXTENSIONS_FILTER</param-name>
+		<param-value>false</param-value>
+	</context-param>
+	<context-param>
+		<param-name>org.apache.myfaces.DISABLE_TOMAHAWK_FACES_CONTEXT_WRAPPER</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	<context-param>
+		<description>Evita que o JSF escreva atributo id em elementos input do tipo hidden no XHTML que vai para o cliente.</description>
+		<param-name>com.sun.faces.enableViewStateIdRendering</param-name>
+		<param-value>false</param-value>
+	</context-param>	
+	<servlet>
+		<servlet-name>Resources Servlet</servlet-name>
+		<servlet-class>org.springframework.js.resource.ResourceServlet</servlet-class>
+		<load-on-startup>0</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Resources Servlet</servlet-name>
+		<url-pattern>/resources/*</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>Spring MVC Dispatcher Servlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value></param-value>
+		</init-param>
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Spring MVC Dispatcher Servlet</servlet-name>
+		<url-pattern>*.do</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>Faces Servlet</servlet-name>
+		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>/faces/*</url-pattern>
+		<url-pattern>*.jsf</url-pattern>
+	</servlet-mapping>
+	<filter>
+		<filter-name>applicationFilter</filter-name>
+		<filter-class>com.kameshi.framework.filter.FrameworkFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>applicationFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<filter>
+		<filter-name>hibernateFilter</filter-name>
+		<filter-class>org.springframework.orm.hibernate3.support.OpenSessionInViewFilter</filter-class>
+		<init-param>
+			<param-name>singleSession</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>hibernateFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/404.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/500.jsp</location>
+	</error-page>
+	<error-page>
+		<exception-type>javax.el.ELException</exception-type>
+		<location>/500.jsp</location>
+	</error-page>
+	<error-page>
+		<exception-type>java.lang.NullPointerException</exception-type>
+		<location>/500.jsp</location>
+	</error-page>
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+</web-app>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+     http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+     http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+     http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+	<bean id="kernel" class="com.kameshi.framework.kernel.Kernel" />
+	
+	<bean id="frameworkInitialization" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean" depends-on="kernel">
+        <property name="targetObject" ref="kernel" />        
+        <property name="targetMethod" value="initialize" />
+    </bean>
+
+	<!-- persistencia -->	
+	<bean id="persistenceModule" class="com.kameshi.framework.module.persistence.hibernate.core.HibernatePersistenceModule" />		
+
+	<bean abstract="true" id="dao" class="com.kameshi.framework.support.persistence.core.CoreDao">
+		<property name="persistenceModule" ref="persistenceModule" />
+	</bean>
+	
+	<!-- transacao -->
+	<bean id="transactionModule" class="com.kameshi.framework.module.transaction.core.HibernateSessionManager" scope="request"/>
+	
+	<!-- seguranca -->
+	<bean id="securityModule" class="com.kameshi.framework.module.security.core.SecurityModule" />
+	
+	<!-- mail -->	
+	<bean id="mailModule" class="com.kameshi.framework.module.mail.core.MailModule">
+		<property name="jndiName" value="mailServer" />
+	</bean>
+	
+	<bean id="exceptionMailFactory" class="com.kameshi.framework.module.mail.factory.core.ExceptionMailFactory">
+		<property name="from" value="thiagoprocaci@gmail.com" />
+		<property name="to" value="thiagoprocaci@gmail.com" />
+		<property name="subject" value="Error shadya" />
+	</bean>
+	
+	<!-- mensageria -->
+	<bean id="messengerModule" class="com.kameshi.framework.module.messenger.core.MessengerModule" >		
+		<property name="bundleList">
+			 <list>
+			 	<value>messages</value>
+			 </list>
+		</property>
+	</bean>
+		
+	<!-- web -->	
+	<bean id="ticketGenerator" class="com.kameshi.framework.module.web.error.core.TicketGenerator" />
+	
+	<bean id="exceptionBarrier" class="com.kameshi.framework.module.web.barrier.core.ExceptionBarrier" >
+		<property name="ticketGenerator" ref="ticketGenerator" />
+		<property name="systemExceptionHandlers">
+			 <list>
+			 	<bean class="com.kameshi.framework.module.web.handler.exception.core.EmailNotifierSystemExceptionHandler" >
+			 		<property name="exceptionMailFactory" ref="exceptionMailFactory" />
+			 	</bean>			 	
+			 	<bean class="com.kameshi.framework.module.web.handler.exception.core.StackTraceNotifierSystemExceptionHandler" />
+			 	<bean class="com.kameshi.framework.module.web.handler.exception.core.PageNotifierSystemExceptionHandler" />
+			 </list>
+		</property>
+	</bean>
+	
+	<!-- nao confundir o flowManager com o flowController do spring web flow.. -->
+	<bean id="flowManager" class="com.kameshi.framework.module.web.flow.core.FlowManager" scope="request" />
+	
+	<bean id="webModule" class="com.kameshi.framework.module.web.core.WebModule" scope="request">
+		<property name="flowManager" ref="flowManager" />
+		<property name="exceptionBarrier" ref="exceptionBarrier" />
+		<property name="beforeRequestHandlers">
+			<list>
+				<bean class="com.kameshi.framework.module.web.handler.core.NoCacheBeforeRequestHandler" />
+			</list>
+		</property>
+	</bean>	
+
+</beans>
